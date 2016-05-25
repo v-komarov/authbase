@@ -1,0 +1,101 @@
+{% include "header.html" %}
+
+<div class="g">
+<div class="g-row">
+
+{% include "menu.html" %}
+
+
+<h3>Доступ</h3>
+
+
+<center>
+    <form action="" method="post" class="forms">{% csrf_token %}
+	<fieldset>
+	    <div class="f-row">
+		<label>{{ form.search.label }}</label>
+		<div class="f-input">{{ form.search }}</div>
+	    </div><!-- f-row -->
+	    <div class="f-row">
+		<label>{{ form.modul.label }}</label>
+		<div class="f-input">{{ form.modul }}</div>
+	    </div><!-- f-row -->
+	</fieldset>
+	<div class="f-actions"><button type="submit" class="f-bu">Применить</button></div>
+    </form>
+
+</center>
+
+
+
+
+{# Вывод страниц #}
+<div class="paginator">
+    <span class="step-links">
+	{% if data.has_previous %}
+	    <a href="?page={{ data.previous_page_number }}">Предыдущая</a>
+	{% endif %}
+
+    <span class="current">
+	Стр. {{ data.number }} из {{ data.paginator.num_pages }}
+    </span>
+
+	{% if data.has_next %}
+	    <a href="?page={{ data.next_page_number }}">Следующая</a>
+	{% endif %}
+    </span>
+</div><!-- paginator -->
+
+<table border=0>
+<tr>
+<th>Фамилия</th>
+<th>Имя</th>
+<th>Очество</th>
+<th>Модуль</th>
+<th>Доступ</th>
+</tr>
+
+    {% for row in data %}
+	<tr>
+	    <td>{{ row.1 }}</td>
+	    <td>{{ row.2 }}</td>
+	    <td>{{ row.3 }}</td>
+	    <td>{{ row.5 }}</td>
+	    <td id="{{ row.0 }}{{ row.4 }}">
+		<a href="#" 
+		onclick="new Ajax.Updater('{{ row.0 }}{{ row.4 }}','/switch?userkod={{ row.0 }}&accesskod={{ row.4 }}',{ method : 'GET' });"
+		{% if row.6 == 'ВКЛЮЧЕНО' %}
+		style="color: green;"
+		{% endif %}
+		style="color: red;"
+		>{{ row.6 }}</a>
+		
+	    </td>
+	</tr>
+    {% endfor %}
+
+</table>
+
+
+{# Вывод страниц #}
+<div class="paginator">
+    <span class="step-links">
+	{% if data.has_previous %}
+	    <a href="?page={{ data.previous_page_number }}">Предыдущая</a>
+	{% endif %}
+
+    <span class="current">
+	Стр. {{ data.number }} из {{ data.paginator.num_pages }}
+    </span>
+
+	{% if data.has_next %}
+	    <a href="?page={{ data.next_page_number }}">Следующая</a>
+	{% endif %}
+    </span>
+</div><!-- paginator -->
+
+
+</div><!-- g-row -->
+</div><!-- g -->
+
+{% include "footer.html" %}

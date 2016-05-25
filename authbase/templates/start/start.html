@@ -1,0 +1,53 @@
+{% include "header.html" %}
+
+<div class="g">
+<div class="g-row">
+
+<div class="f-nav-bar">
+    <div class="f-nav-bar-body">
+	<div class="f-nav-bar-title">
+	    <a href="#">AuthBase</a>
+	</div><!-- f-nav-bar-title -->
+    </div><!-- f-nav-bar-body -->
+</div><!-- f-nav-bar -->
+
+<center>
+    <form action="" method="post" class="forms">{% csrf_token %}
+	<fieldset>
+	    <legend>Регистрация</legend>
+	    <div class="f-row">
+	    <label>Логин</label>
+		<div class="f-input"><input type="text" name="login" /></div>
+	    </div><!-- f-row -->
+	    <div class="f-row">
+	    <label>Пароль</label>
+		<div class="f-input"><input type="password" name="password" /></div>
+	    </div><!-- f-row -->
+	</fieldset>
+	<div class="f-actions"><button type="submit" class="f-bu">OK</button></div>
+    </form>
+
+</center>
+</div><!-- g-row -->
+
+<blockquote>
+    Если утерян логин и пароль, вам <a href="/pwmail">сюда</a>
+</blockquote>
+
+
+
+{% if error != 'OK' %}
+<div class="g-row">
+    <center>
+	<div class="g-5">
+	<div class="f-message f-message-error">
+	    <center>{{ error }}</center>
+	</div>
+	</div><!-- g-5 -->
+    </center>
+</div><!-- g-row -->
+{% endif %}
+
+</div><!-- g -->
+
+{% include "footer.html" %}

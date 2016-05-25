@@ -1,0 +1,57 @@
+{% include "header.html" %}
+
+<div class="g">
+<div class="g-row">
+
+<div class="f-nav-bar">
+    <div class="f-nav-bar-body">
+	<div class="f-nav-bar-title">
+	    <a href="#">AuthBase</a>
+	</div><!-- f-nav-bar-title -->
+    </div><!-- f-nav-bar-body -->
+</div><!-- f-nav-bar -->
+
+<center>
+    <form action="" method="post" class="forms">{% csrf_token %}
+	<fieldset>
+	    <legend>Рассылка логина и пароля (КИС,ТИС,SCatalog,AuthBase) по адресу Email</legend>
+	    <div class="f-row">
+	    <label>{{ form.email.label }}</label>
+		<div class="f-input">{{ form.email }}</div>
+	    </div><!-- f-row -->
+	</fieldset>
+	<div class="f-actions"><button type="submit" class="f-bu">OK</button></div>
+    </form>
+
+</center>
+</div><!-- g-row -->
+
+{% if mess == 'ERROR' %}
+<div class="g-row">
+    <center>
+	<div class="g-5">
+	<div class="f-message f-message-error">
+	    <center>Неправильный email формат (нужен формат user@sibir.ttk.ru) или такой адрес отсутствует!</center>
+	</div>
+	</div><!-- g-5 -->
+    </center>
+</div><!-- g-row -->
+{% endif %}
+
+
+{% if mess == 'OK' %}
+<div class="g-row">
+    <center>
+	<div class="g-5">
+	<div class="f-message f-message-success">
+	    <center>Логин и пароль отправлены на указанный email адрес!</center>
+	</div>
+	</div><!-- g-5 -->
+    </center>
+</div><!-- g-row -->
+{% endif %}
+
+
+</div><!-- g -->
+
+{% include "footer.html" %}

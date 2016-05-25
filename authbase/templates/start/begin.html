@@ -1,0 +1,27 @@
+{% include "header.html" %}
+
+<div class="g">
+<div class="g-row">
+
+{% include "menu.html" %}
+
+	<br><br>
+
+
+<center>
+<div class="g-5">
+    <div class="f-message f-message-success">
+    <center>
+	<h4>Вы зарегистрированы как:</h4><br>
+	{{ fio }}<br>
+	Телефон {{ phone }}<br>
+	Email {{ email }}
+    </center>
+    </div><!-- f-message f-message-success -->
+</div><!-- g-5 -->
+</center>
+
+</div><!-- g-row -->
+</div><!-- g -->
+
+{% include "footer.html" %}

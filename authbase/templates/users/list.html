@@ -1,0 +1,95 @@
+{% include "header.html" %}
+
+<div class="g">
+<div class="g-row">
+
+{% include "menu.html" %}
+
+
+<h3>Пользователи</h3><a href="/newuser"><mark>Создать</mark></a>
+
+</div><!-- g-row -->
+
+
+<div class="g-row">
+<div class="g-4">
+<form method="POST" class="f-horizontal">{% csrf_token %}
+	<label>Поиск</label>
+	<input type="text" name="search" value="{{ search }}" />
+	<button class="f-bu">OK</button>
+</form>
+</div><!-- g-4 -->
+</div><!-- g-row -->
+
+
+
+
+<div class="g-row">
+
+{# Вывод страниц #}
+<div class="paginator">
+    <span class="step-links">
+	{% if data.has_previous %}
+	    <a href="?page={{ data.previous_page_number }}">Предыдущая</a>
+	{% endif %}
+
+    <span class="current">
+	Стр. {{ data.number }} из {{ data.paginator.num_pages }}
+    </span>
+
+	{% if data.has_next %}
+	    <a href="?page={{ data.next_page_number }}">Следующая</a>
+	{% endif %}
+    </span>
+</div><!-- paginator -->
+
+<table border=0>
+<tr>
+<th>Фамилия</th>
+<th>Имя</th>
+<th>Очество</th>
+<th>Телефон</th>
+<th>Должность</th>
+<th>Дирекция/Отдел</th>
+<th>IP/NAS<br>Дата</th>
+<th>Удалить</th>
+</tr>
+
+    {% for row in data %}
+	<tr>
+	    <td><a href="/edituser?rec_id={{ row.0 }}">{{ row.1 }}</a></td>
+	    <td><a href="/edituser?rec_id={{ row.0 }}">{{ row.2 }}</a></td>
+	    <td><a href="/edituser?rec_id={{ row.0 }}">{{ row.3 }}</a></td>
+	    <td><a href="/edituser?rec_id={{ row.0 }}">{{ row.5 }}</a></td>
+	    <td><a href="/edituser?rec_id={{ row.0 }}">{{ row.4 }}</a></td>
+	    <td><a href="/edituser?rec_id={{ row.0 }}">{{ row.11 }}</a></td>
+	    <td><a href="/edituser?rec_id={{ row.0 }}">{{ row.15 }}<br>{{ row.16 }}</a></td>
+	    <td><a href="/deluser?rec_id={{ row.0 }}"><mark><center>X</center></mark></a></td>
+	</tr>
+    {% endfor %}
+
+</table>
+
+
+{# Вывод страниц #}
+<div class="paginator">
+    <span class="step-links">
+	{% if data.has_previous %}
+	    <a href="?page={{ data.previous_page_number }}">Предыдущая</a>
+	{% endif %}
+
+    <span class="current">
+	Стр. {{ data.number }} из {{ data.paginator.num_pages }}
+    </span>
+
+	{% if data.has_next %}
+	    <a href="?page={{ data.next_page_number }}">Следующая</a>
+	{% endif %}
+    </span>
+</div><!-- paginator -->
+
+
+</div><!-- g-row -->
+</div><!-- g -->
+
+{% include "footer.html" %}

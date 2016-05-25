@@ -1,0 +1,55 @@
+{% include "header.html" %}
+
+<div class="g">
+<div class="g-row">
+
+{% include "menu.html" %}
+
+
+<h3>Мои данные</h3>
+
+<ul class="f-nav f-nav-tabs">
+    <li><a href="/mydata">Учетная запись</a></li>
+    <li><a href="/myphoto">Фото</a></li>
+    <li class="active"><a href="/fiesta">Даты</a></li>
+    <li><a href="/mystatus">Статус</a></li>
+</ul><!-- f-nav f-nav-tabs -->
+
+
+<h3>Даты</h3>
+
+
+<ul>
+
+    {% for item in data %}
+	<li>{{ item.2 }} {{ item.1 }}&nbsp;&nbsp;&nbsp;&nbsp;<a href="/fiesta/?delete_fiesta={{ item.0 }}"><mark>X</mark></a></li>
+    {% endfor %}
+
+</ul>
+
+
+
+<center>
+    <form action="" method="post" class="forms">{% csrf_token %}
+	<fieldset>
+	    <legend></legend>
+	    <div class="f-row">
+		<label>{{ form.fiesta.label }}</label>
+		<div class="f-input">{{ form.fiesta }}</div>
+	    </div><!-- f-row -->
+	    <div class="f-row">
+		<label>{{ form.date.label }}</label>
+		<div class="f-input">{{ form.date }}</div>
+	    </div><!-- f-row -->
+	</fieldset>
+	<div class="f-actions"><button type="submit" class="f-bu">Добавить</button></div>
+    </form>
+
+</center>
+
+
+</div><!-- g-row -->
+</div><!-- g -->
+
+
+{% include "footer.html" %}

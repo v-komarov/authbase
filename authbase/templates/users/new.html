@@ -1,0 +1,83 @@
+{% include "header.html" %}
+
+<div class="g">
+<div class="g-row">
+
+{% include "menu.html" %}
+
+
+<h3>Новая учетная запись</h3>
+
+
+<center>
+    <form action="" method="post" class="forms">{% csrf_token %}
+	<fieldset>
+	    <legend>Пользователь</legend>
+	    <div class="f-row">
+		<label>{{ form.name1.label }}</label>
+		<div class="f-input">{{ form.name1 }}</div>
+	    </div><!-- f-row -->
+	    <div class="f-row">
+		<label>{{ form.name2.label }}</label>
+		<div class="f-input">{{ form.name2 }}</div>
+	    </div><!-- f-row -->
+	    <div class="f-row">
+		<label>{{ form.name3.label }}</label>
+		<div class="f-input">{{ form.name3 }}</div>
+	    </div><!-- f-row -->
+	    <div class="f-row">
+		<label>{{ form.job.label }}</label>
+		<div class="f-input">{{ form.job }}</div>
+	    </div><!-- f-row -->
+	    <div class="f-row">
+		<label>{{ form.phone_shot.label }}</label>
+		<div class="f-input">{{ form.phone_shot }}</div>
+	    </div><!-- f-row -->
+	    <div class="f-row">
+		<label>{{ form.phone_city.label }}</label>
+		<div class="f-input">{{ form.phone_city }}</div>
+	    </div><!-- f-row -->
+	    <div class="f-row">
+		<label>{{ form.phone_mob.label }}</label>
+		<div class="f-input">{{ form.phone_mob }}</div>
+	    </div><!-- f-row -->
+	    <div class="f-row">
+		<label>{{ form.phone_home.label }}</label>
+		<div class="f-input">{{ form.phone_home }}</div>
+	    </div><!-- f-row -->
+	    <div class="f-row">
+		<label>{{ form.email.label }}</label>
+		<div class="f-input">{{ form.email }}</div>
+	    </div><!-- f-row -->
+	    <div class="f-row">
+		<label>{{ form.dep.label }}</label>
+		<div class="f-input">{{ form.dep }}</div>
+	    </div><!-- f-row -->
+	    <div class="f-row">
+		<label>{{ form.status.label }}</label>
+		<div class="f-input">{{ form.status }}</div>
+	    </div><!-- f-row -->
+	    <div class="f-row">
+		<label>{{ form.login.label }}</label>
+		<div class="f-input">{{ form.login }}</div>
+	    </div><!-- f-row -->
+	    <div class="f-row">
+		<label>{{ form.passwd.label }}</label>
+		<div class="f-input">{{ form.passwd }}</div>
+	    </div><!-- f-row -->
+	</fieldset>
+	<div class="f-actions"><button type="submit" class="f-bu">Создать</button></div>
+    </form>
+
+</center>
+
+<center>
+<div class="f-message" f-message-error>
+    {{ error }}
+</div><!-- f-message -->
+</center>
+
+</div><!-- g-row -->
+</div><!-- g -->
+
+{% include "footer.html" %}

@@ -1,0 +1,43 @@
+{% include "header.html" %}
+
+<div class="g">
+<div class="g-row">
+
+{% include "menu.html" %}
+
+
+<h3>Сегодня...</h3>
+
+
+
+
+<table cellspacing=0>
+<tr>
+    <th><center>ФИО</center></th>
+    <th><center>Должность</center></th>
+    <th><center>Подразделение</center></th>
+    <th><center>Телефон</center></th>
+    <th><center>Дата</center></th>
+    <th><center>Что...</center></th>
+</tr>
+
+    {% for row in data %}
+	<tr>
+	    <td>{{ row.0 }} {{ row.1 }} {{ row.2 }}</td>
+	    <td>{{ row.3 }}</td>
+	    <td>{{ row.4 }}</td>
+	    <td>{{ row.5 }}</td>
+	    <td>{{ row.6 }}</td>
+	    <td>{{ row.7 }}</td>
+	</tr>
+    {% endfor %}
+
+</table>
+
+
+
+
+</div><!-- g-row -->
+</div><!-- g -->
+
+{% include "footer.html" %}

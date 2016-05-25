@@ -1,0 +1,89 @@
+{% include "header.html" %}
+
+<div class="g">
+<div class="g-row">
+
+{% include "menu.html" %}
+
+
+<h3>Телефонный справочник</h3>
+
+
+<center>
+    <form action="" method="post" class="forms">{% csrf_token %}
+	<fieldset>
+	    <div class="f-row">
+		<label>{{ form.search.label }}</label>
+		<div class="f-input">{{ form.search }}</div>
+	    </div><!-- f-row -->
+	    <div class="f-row">
+		<label>{{ form.dep.label }}</label>
+		<div class="f-input">
+		<select name="dep">
+		{% for item in dep %}
+		    {% if item.0 == dep_kod %}
+			<option value="{{ item.0 }}" selected="selected">{{ item.1|safe }}</option>
+		    {% else %}
+			<option value="{{ item.0 }}">{{ item.1|safe }}</option>
+		    {% endif %}
+		{% endfor %}
+		</select>
+		</div>
+	    </div><!-- f-row -->
+	</fieldset>
+	<div class="f-actions"><button type="submit" class="f-bu">Применить</button></div>
+    </form>
+
+</center>
+
+
+
+<table cellspacing=0>
+<tr>
+    <th rowspan='2'><center>ФИО</center></th>
+    <th rowspan='2'><center>Должность</center></th>
+    <th rowspan='2'><center>Подразделение</center></th>
+    <th colspan='4'><center>Телефоны</center></th>
+</tr>
+<tr>
+    <th><center>Внутренний</center></th>
+    <th><center>Городской</center></th>
+    <th><center>Мобильный</center></th>
+    <th><center>Домашний</center></th>
+</tr>
+
+    {% for row in data %}
+	<tr>
+	    <td>
+	    {{ row.1 }} {{ row.2 }} {{ row.3 }}<br><br>
+	    <div style="color: brown;">{{ row.22 }}</div>
+	    {% if row.21 == 'photo' %}
+		<a href="#showimage{{ row.0 }}" class="vkl" style="color: green;">фото</a>
+		<div class="lightbox" id="showimage{{ row.0 }}">
+		    <div>
+			<div>
+			    <img src="/myphotoshow?time={% now "U" %}&user_id={{ row.0 }}"/>
+			</div>
+		    </div>
+		</div>
+		<a href="#close">&times;</a>
+	    {% endif %}
+	    </td>
+	    <td>{{ row.4 }}</td>
+	    <td>{{ row.11 }}</td>
+	    <td>{{ row.5 }}</td>
+	    <td>{{ row.6 }}</td>
+	    <td>{{ row.7 }}</td>
+	    <td>{{ row.8 }}</td>
+	</tr>
+    {% endfor %}
+
+</table>
+
+
+
+
+</div><!-- g-row -->
+</div><!-- g -->
+
+{% include "footer.html" %}

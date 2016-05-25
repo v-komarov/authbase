@@ -1,0 +1,66 @@
+{% include "header.html" %}
+
+<div class="g">
+<div class="g-row">
+
+{% include "menu.html" %}
+
+
+<h3>Список модулей</h3><a href="/addaccessname"><mark>Создать</mark></a>
+
+
+{# Вывод страниц #}
+<div class="paginator">
+    <span class="step-links">
+	{% if data.has_previous %}
+	    <a href="?page={{ data.previous_page_number }}">Предыдущая</a>
+	{% endif %}
+
+    <span class="current">
+	Стр. {{ data.number }} из {{ data.paginator.num_pages }}
+    </span>
+
+	{% if data.has_next %}
+	    <a href="?page={{ data.next_page_number }}">Следующая</a>
+	{% endif %}
+    </span>
+</div><!-- paginator -->
+
+<table border=0>
+<tr>
+<th>Код модуля</th>
+<th>Название модуля</th>
+</tr>
+
+    {% for row in data %}
+	<tr>
+	    <td><a href="/editaccessname?rec_id={{ row.0 }}">{{ row.0 }}</a></td>
+	    <td><a href="/editaccessname?rec_id={{ row.0 }}">{{ row.1 }}</a></td>
+	</tr>
+    {% endfor %}
+
+</table>
+
+
+{# Вывод страниц #}
+<div class="paginator">
+    <span class="step-links">
+	{% if data.has_previous %}
+	    <a href="?page={{ data.previous_page_number }}">Предыдущая</a>
+	{% endif %}
+
+    <span class="current">
+	Стр. {{ data.number }} из {{ data.paginator.num_pages }}
+    </span>
+
+	{% if data.has_next %}
+	    <a href="?page={{ data.next_page_number }}">Следующая</a>
+	{% endif %}
+    </span>
+</div><!-- paginator -->
+
+
+</div><!-- g-row -->
+</div><!-- g -->
+
+{% include "footer.html" %}

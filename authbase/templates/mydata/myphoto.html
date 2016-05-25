@@ -1,0 +1,43 @@
+{% include "header.html" %}
+
+<div class="g">
+<div class="g-row">
+
+{% include "menu.html" %}
+
+
+<h3>Мои данные</h3>
+
+<ul class="f-nav f-nav-tabs">
+    <li><a href="/mydata">Учетная запись</a></li>
+    <li class="active"><a href="/myphoto">Фото</a></li>
+    <li><a href="/fiesta">Даты</a></li>
+    <li><a href="/mystatus">Статус</a></li>
+</ul><!-- f-nav f-nav-tabs -->
+
+<h3>Фото</h3>
+
+<div class="f-bwi">
+    <img class="f-bwi-pic" src="/myphotoshow?time={% now "U" %}&user_id={{ kod }}" />
+</div><!-- f-bwi -->
+
+
+<center>
+    <form action="" enctype="multipart/form-data" method="post" class="forms">{% csrf_token %}
+	<fieldset>
+	    <legend>Загрузка фотографии</legend>
+	    <div class="f-row">
+		<label>{{ form.file_load.label }}</label>
+		<div class="f-input">{{ form.file_load }}</div>
+	    </div><!-- f-row -->
+	</fieldset>
+	<div class="f-actions"><button type="submit" class="f-bu">Загрузить</button></div>
+    </form>
+
+</center>
+
+
+</div><!-- g-row -->
+</div><!-- g -->
+
+{% include "footer.html" %}
